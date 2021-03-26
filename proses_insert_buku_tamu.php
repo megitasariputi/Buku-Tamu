@@ -1,6 +1,8 @@
 <?php 
     require_once 'mysql_koneksi.php';
 
+    session_start();
+
     // perintah SQL (4)
     $nama = $_POST['nama'];
     $email = $_POST['email'];
@@ -11,12 +13,16 @@
 
     // Eksekusi Perintah menampilkan ke tabel
     if($conn->query($sql)===true){
+        $_SESSION['update_status'] = 1;
+        $_SESSION['update_message'] = '<strong>Berhasil!</strong>Data berhasil tersimpan';
         // header('location:halaman_buku_tamu.php');
         echo "<script>alert('Berhasil Tersimpan');
         location.assign('halaman_buku_tamu.php');
         </script>";
     }
     else {
+        $_SESSION['update_status'] = 0;
+        $_SESSION['update_message'] = '<strong>Gagal!</strong>Data gagal tersimpan';
         echo "<script>alert('Gagal Tersimpan');
         location.assign('halaman_buku_tamu.php');
         </script>";
