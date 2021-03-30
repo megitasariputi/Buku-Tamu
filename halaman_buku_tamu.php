@@ -1,6 +1,10 @@
 <?php
 require_once 'mysql_koneksi.php';
 session_start();
+
+if(!isset($_SESSION['log'])){
+    header('location:form_login.php');
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -19,6 +23,7 @@ session_start();
     <div class="card">
         <div class="card-header">
             <h3>Form Input Buku Tamu</h3>
+            <a href="logout.php">Logout</a>
         </div>
 
         <div class="card-body">
@@ -180,4 +185,4 @@ session_start();
     </script>
 </body>
 
-</html> 
+</html>
